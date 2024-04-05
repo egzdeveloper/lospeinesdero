@@ -24,3 +24,13 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+@import 'swiper/css';
+
+@import "@mobiscroll/angular/dist/css/mobiscroll.scss";
+
+mbsc-calendar-day {
+  div {
+    display: none;
+  }
+}
