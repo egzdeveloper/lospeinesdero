@@ -1,0 +1,7 @@
+{
+  "name": "lospeinesdero",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
