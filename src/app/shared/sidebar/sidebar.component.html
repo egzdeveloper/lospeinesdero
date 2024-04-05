@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list>
+  <div class="top">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Principal</ion-label>
+      </ion-item-divider>
+
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of principal; let i = index">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Editar</ion-label>
+      </ion-item-divider>
+
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of editar; let i = index">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Finanzas</ion-label>
+      </ion-item-divider>
+
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of finanzas; let i = index">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-item-group>
+  </div>
+
+  <div class="bottom">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Configuración</ion-label>
+      </ion-item-divider>
+
+      <ion-menu-toggle auto-hide="false" *ngFor="let p of configuracion; let i = index">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+          <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
+          <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider class="copyright">
+        <ion-label>© 2024 by egzdeveloper</ion-label>
+      </ion-item-divider>
+    </ion-item-group>
+  </div>
+</ion-list>
+
+
