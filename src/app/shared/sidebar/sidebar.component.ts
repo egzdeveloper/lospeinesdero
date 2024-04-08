@@ -10,7 +10,8 @@ export class SidebarComponent {
   public principal = [
     { title: 'Dashboard', url: 'dashboard', icon: 'home' },
     { title: 'Calendario', url: 'calendar', icon: 'calendar-number' },
-    { title: 'Añadir Cita', url: 'add', icon: 'add-circle' }
+    { title: 'Añadir Cita', url: 'add', icon: 'add-circle' },
+    { title: 'Inventario', url: 'inventory', icon: 'list' }
   ];
 
   public editar = [
@@ -23,7 +24,7 @@ export class SidebarComponent {
   ];
 
   public configuracion = [
-    { title: 'Configuración', url: 'config', icon: 'settings' }
+    { title: 'Configuración', url: 'settings', icon: 'settings' }
   ];
 
   constructor() { }

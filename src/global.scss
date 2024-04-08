@@ -33,4 +33,16 @@ mbsc-calendar-day {
   div {
     display: none;
   }
+
+  .mbsc-calendar-cell-inner {
+    display: inline-block;
+
+    .mbsc-calendar-cell-text {
+      display: block;
+    }
+
+    div {
+      display: inline-block;
+    }
+  }
 }

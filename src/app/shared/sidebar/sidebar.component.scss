@@ -3,10 +3,14 @@ ion-list {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 56px);
+  height: 100%;
 
   ion-item.selected {
     --color: var(--ion-color-primary);
+
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
   }
 
   .copyright {

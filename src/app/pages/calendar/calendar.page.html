@@ -8,6 +8,14 @@
 </ion-header>
 
 <ion-content>
+  <ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="week">
+      <ion-label>Semana</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="month">
+      <ion-label>Mes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
   <mbsc-eventcalendar [data]="myEvents" [options]="eventSettings"></mbsc-eventcalendar>
 </ion-content>
 
