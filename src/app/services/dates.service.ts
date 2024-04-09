@@ -42,4 +42,9 @@ export class DatesService {
   deleteDate(id: string) {
     this.db.collection('citas').doc(id).delete();
   }
+
+  getDateByDay(day: string) {
+    const dataCollection: AngularFirestoreCollection<Date> = this.db.collection('citas', ref => ref.where('day', '==', day).orderBy('start'));
+    return dataCollection.valueChanges();
+  }
 }

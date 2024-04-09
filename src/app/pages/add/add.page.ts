@@ -3,8 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { MbscCalendarEvent, Notifications } from '@mobiscroll/angular';
-import { Date } from 'src/app/models/date';
 import { DatesService } from 'src/app/services/dates.service';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add',
@@ -56,13 +57,10 @@ export class AddPage implements OnInit {
   }
 
   submit() {
-    let id;
-    if (this.id) id = this.id;
-    else id = new Date().toISOString();
-
     this.date = {
       name: this.form.value.name!,
-      id: id,
+      id: moment().format(),
+      day: moment(this.form.value.start, 'YYYY-MM-DD[T]hh:mm').format('YYYY/MM/DD'),
       title: this.form.value.service!,
       start: this.form.value.start!,
       end: this.form.value.end!,
@@ -120,5 +118,9 @@ export class AddPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  goBack() {
+    this.router.navigateByUrl('/calendar');
   }
 }

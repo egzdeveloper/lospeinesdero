@@ -29,20 +29,31 @@
 
 @import "@mobiscroll/angular/dist/css/mobiscroll.scss";
 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 mbsc-calendar-day {
   div {
     display: none;
   }
 
   .mbsc-calendar-cell-inner {
-    display: inline-block;
+    display: block;
+    padding-bottom: 15px;
 
     .mbsc-calendar-cell-text {
-      display: block;
+      display: inline-block;
     }
 
     div {
       display: inline-block;
+
+      .mbsc-calendar-marks {
+        margin-top: 15px;
+      }
     }
   }
+}
+
+* {
+  font-family: "Quicksand", sans-serif;
 }

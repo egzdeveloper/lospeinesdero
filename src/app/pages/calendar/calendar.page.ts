@@ -35,7 +35,7 @@ export class CalendarPage implements OnInit {
   myEvents: MbscCalendarEvent[] = [];
 
   eventSettings: MbscEventcalendarOptions = {
-    height: '90%',
+    height: '89vh',
     view: {
       calendar: { type: 'week' },
       agenda: { type: 'day' },
@@ -74,5 +74,9 @@ export class CalendarPage implements OnInit {
         }
       }
     }
+  }
+
+  addDate() {
+    this.router.navigateByUrl('add');
   }
 }

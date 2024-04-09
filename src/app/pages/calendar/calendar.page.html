@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)">
+  <ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" color="tertiary">
     <ion-segment-button value="week">
       <ion-label>Semana</ion-label>
     </ion-segment-button>
@@ -17,6 +17,12 @@
     </ion-segment-button>
   </ion-segment>
   <mbsc-eventcalendar [data]="myEvents" [options]="eventSettings"></mbsc-eventcalendar>
+
+  <div class="add-button">
+    <ion-button color="tertiary" slot="icon-only" (click)="addDate()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
 
 
