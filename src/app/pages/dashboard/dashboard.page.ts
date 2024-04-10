@@ -42,6 +42,7 @@ export class DashboardPage implements OnInit {
   }
 
   editDate(id: string) {
-    this.router.navigateByUrl('add/' + id);
+    console.log(id)
+    this.router.navigateByUrl('/add/' + id);
   }
 }

@@ -53,7 +53,6 @@ export class CalendarPage implements OnInit {
   ngOnInit(): void {
     this.datesService.getDates().subscribe((res) => {
       this.myEvents = res;
-      console.log(this.myEvents);
     });
   }
 
