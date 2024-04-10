@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent {
 
   public principal = [
-    { title: 'Dashboard', url: 'dashboard', icon: 'home' },
+    { title: 'Inicio', url: 'dashboard', icon: 'home' },
     { title: 'Calendario', url: 'calendar', icon: 'calendar-number' },
     { title: 'Añadir Cita', url: 'add', icon: 'add-circle' },
     { title: 'Inventario', url: 'inventory', icon: 'list' }
@@ -28,5 +28,9 @@ export class SidebarComponent {
   ];
 
   constructor() { }
+
+  logout() {
+
+  }
 
 }
