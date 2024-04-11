@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
-import { Date } from '../models/date';
 import { MbscCalendarEvent } from '@mobiscroll/angular';
+import { DateEvent } from 'src/app/models/date-event';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatesService {
 
-  datesCollection: AngularFirestoreCollection<MbscCalendarEvent>;
-  dates: Observable<MbscCalendarEvent[]>;
+  datesCollection: AngularFirestoreCollection<DateEvent>;
+  dates: Observable<DateEvent[]>;
 
   constructor(public db: AngularFirestore) {
     this.datesCollection = this.db.collection('citas');
     this.dates = this.datesCollection.snapshotChanges().pipe(
       map( actions => actions.map( a => {
-        const data = a.payload.doc.data() as MbscCalendarEvent;
+        const data = a.payload.doc.data() as DateEvent;
         data.id = a.payload.doc.id;
         return data;
       }))
@@ -31,11 +31,11 @@ export class DatesService {
     return this.db.collection<any>('citas').doc(id).valueChanges();
   }
 
-  addDate(date: MbscCalendarEvent) {
+  addDate(date: DateEvent) {
     this.db.collection('citas').doc(date.id?.toString()).set(date);
   }
 
-  editDate(date: MbscCalendarEvent) {
+  editDate(date: DateEvent) {
     this.db.collection('citas').doc(date.id?.toString()).update(date);
   }
 
@@ -44,7 +44,7 @@ export class DatesService {
   }
 
   getDateByDay(day: string) {
-    const dataCollection: AngularFirestoreCollection<Date> = this.db.collection('citas', ref => ref.where('day', '==', day).orderBy('start'));
+    const dataCollection: AngularFirestoreCollection<DateEvent> = this.db.collection('citas', ref => ref.where('day', '==', day).orderBy('start'));
     return dataCollection.valueChanges();
   }
 }

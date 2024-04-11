@@ -6,6 +6,8 @@ import { MbscCalendarEvent, Notifications } from '@mobiscroll/angular';
 import { DatesService } from 'src/app/services/dates.service';
 
 import * as moment from 'moment';
+import { DateEvent } from 'src/app/models/date-event';
+import { isNumber } from '@mobiscroll/angular/dist/js/core/util/misc';
 
 @Component({
   selector: 'app-add',
@@ -13,7 +15,7 @@ import * as moment from 'moment';
   styleUrls: ['./add.page.scss'],
 })
 export class AddPage implements OnInit {
-  date: MbscCalendarEvent;
+  date: DateEvent;
   form = new FormGroup({
     name: new FormControl('', Validators.required),
     service: new FormControl('', Validators.required),
@@ -61,6 +63,9 @@ export class AddPage implements OnInit {
     if (this.id) id = this.id;
     else id = new Date().toISOString();
 
+    var startTime = new Date();
+    var endTime = new Date();
+
     this.date = {
       name: this.form.value.name!,
       id: id,
@@ -68,9 +73,10 @@ export class AddPage implements OnInit {
         'YYYY/MM/DD'
       ),
       title: this.form.value.service!,
-      start: this.form.value.start!,
-      end: this.form.value.end!,
-      price: this.form.value.price!,
+      startTime: startTime,
+      allDay: false,
+      endTime: endTime,
+      price: Number(this.form.value.price!),
       observations: this.form.value.observations!,
       color: this.form.value.color!,
     };

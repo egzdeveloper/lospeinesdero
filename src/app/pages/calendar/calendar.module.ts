@@ -8,6 +8,8 @@ import { CalendarPageRoutingModule } from './calendar-routing.module';
 
 import { CalendarPage } from './calendar.page';
 
+import { NgCalendarModule  } from 'ionic7-calendar';
+
 import localeES from '@angular/common/locales/es';
 registerLocaleData(localeES, 'es-ES');
 
@@ -21,7 +23,7 @@ import { MbscModule } from '@mobiscroll/angular';
     FormsModule,
     IonicModule,
     CalendarPageRoutingModule,
-
+    NgCalendarModule,
     MbscModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatesService } from 'src/app/services/dates.service';
 
-import { Date } from 'src/app/models/date';
+import { DateEvent } from 'src/app/models/date-event';
 import { Router } from '@angular/router';
 
 import * as moment from 'moment';
@@ -16,8 +16,8 @@ export class DashboardPage implements OnInit {
 
   today: string;
   tomorrow: string;
-  todayDates: Date[] = [];
-  tomorrowDates: Date[] = [];
+  todayDates: DateEvent[] = [];
+  tomorrowDates: DateEvent[] = [];
   todayTitle: string;
   tomorrowTitle: string;
 
@@ -31,6 +31,7 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.datesServices.getDateByDay(this.today).subscribe(res => {
       this.todayDates = res;
+      console.log(res);
     });
     this.datesServices.getDateByDay(this.tomorrow).subscribe(res => {
       this.tomorrowDates = res;
