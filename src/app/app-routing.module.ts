@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'inventory',
     loadChildren: () => import('./pages/inventory/inventory.module').then( m => m.InventoryPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
   }
 ];
 

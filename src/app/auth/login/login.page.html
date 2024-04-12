@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card>
+      <ion-card-header>
+        <img src="assets/icon/icon-bg.png" alt="">
+        <ion-card-title>Inicia Sesión</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="form" (ngSubmit)="login()">
+          <ion-list>
+            <ion-item>
+              <ion-input label="Email" type="text" labelPlacement="stacked" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Contraseña" [type]="showPassword ? 'text' : 'password'" labelPlacement="stacked"
+                formControlName="password">
+                <ion-button fill="clear" color="medium" slot="end" aria-label="Show/hide" (click)="showPassword = !showPassword">
+                  <ion-icon slot="icon-only" [name]="showPassword ? 'eye-off' : 'eye'" aria-hidden="true"></ion-icon>
+                </ion-button>
+              </ion-input>
+            </ion-item>
+          </ion-list>
+
+          <ion-button color="tertiary" type="submit" expand="block" [disabled]="!form.valid">Accede <ion-icon slot="end"
+              name="log-in"></ion-icon></ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
