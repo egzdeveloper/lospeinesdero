@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -27,10 +29,12 @@ export class SidebarComponent {
     { title: 'Configuración', url: 'settings', icon: 'settings' }
   ];
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   logout() {
-
+    this.authService.logout();
+    localStorage.clear();
+    window.location.replace('login');
   }
 
 }

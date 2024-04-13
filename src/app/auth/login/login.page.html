@@ -7,7 +7,7 @@
       </ion-card-header>
 
       <ion-card-content>
-        <form [formGroup]="form" (ngSubmit)="login()">
+        <form [formGroup]="form" (ngSubmit)="login()" action="submit">
           <ion-list>
             <ion-item>
               <ion-input label="Email" type="text" labelPlacement="stacked" formControlName="email"></ion-input>

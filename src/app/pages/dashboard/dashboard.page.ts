@@ -5,6 +5,7 @@ import { Date } from 'src/app/models/date';
 import { Router } from '@angular/router';
 
 import * as moment from 'moment';
+import { AuthService } from 'src/app/services/auth.service';
 moment.locale('es');
 
 @Component({
