@@ -44,13 +44,13 @@ export class AddPage implements OnInit {
       this.title = 'Gestionar';
       await this.datesService.getDatewithID(this.id).subscribe((res) => {
         this.form.setValue({
-          name: res.name,
-          service: res.title,
-          price: res.price,
-          start: res.start,
-          end: res.end,
-          observations: res.observations,
-          color: res.color,
+          name: res!.name,
+          service: res!.title,
+          price: res!.price,
+          start: res!.start,
+          end: res!.end,
+          observations: res!.observations,
+          color: res!.color,
         });
       });
     }
