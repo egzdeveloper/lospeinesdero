@@ -12,7 +12,7 @@
       </ion-item-divider>
 
       <ion-menu-toggle auto-hide="false" *ngFor="let p of principal; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="full" detail="false" routerLinkActive="selected">
           <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
           <ion-label>{{ p.title }}</ion-label>
         </ion-item>
@@ -25,7 +25,7 @@
       </ion-item-divider>
 
       <ion-menu-toggle auto-hide="false" *ngFor="let p of editar; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="full" detail="false" routerLinkActive="selected">
           <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
           <ion-label>{{ p.title }}</ion-label>
         </ion-item>
@@ -38,7 +38,7 @@
       </ion-item-divider>
 
       <ion-menu-toggle auto-hide="false" *ngFor="let p of finanzas; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="full" detail="false" routerLinkActive="selected">
           <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon" ></ion-icon>
           <ion-label>{{ p.title }}</ion-label>
         </ion-item>
@@ -53,9 +53,15 @@
       </ion-item-divider>
 
       <ion-menu-toggle auto-hide="false" *ngFor="let p of configuracion; let i = index">
-        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="full" detail="false" routerLinkActive="selected">
           <ion-icon aria-hidden="true" slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
           <ion-label>{{ p.title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item routerDirection="root" (click)="logout()">
+          <ion-icon aria-hidden="true" slot="start" name="log-out" color="danger"></ion-icon>
+          <ion-label>Cerrar Sesión</ion-label>
         </ion-item>
       </ion-menu-toggle>
     </ion-item-group>

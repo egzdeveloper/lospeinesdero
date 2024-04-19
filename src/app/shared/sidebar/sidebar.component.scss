@@ -16,7 +16,7 @@ ion-list {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: calc(100vh - 150px);
 
   ion-item.selected {
     --color: var(--ion-color-tertiary);
@@ -35,7 +35,4 @@ ion-list {
     }
   }
 }
-
-
-
 

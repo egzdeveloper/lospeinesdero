@@ -1,0 +1,43 @@
+ion-content {
+  .container {
+    background-image: radial-gradient(
+        rgba(14, 14, 14, 0.5),
+        rgba(72, 72, 72, 0.5)), url('../../../assets/images/fondo_login.webp');
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    ion-card {
+      max-width: 500px;
+
+      ion-card-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 200px;
+        }
+      }
+
+      ion-card-content {
+        ion-list {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 520px) {
+  .container {
+    align-items: center;
+
+    ion-card {
+      width: 500px;
+    }
+  }
+}
