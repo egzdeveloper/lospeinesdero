@@ -15,7 +15,6 @@ registerLocaleData(localeES, 'es-ES');
 
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MbscModule } from '@mobiscroll/angular';
 
 @NgModule({
   imports: [
@@ -24,7 +23,6 @@ import { MbscModule } from '@mobiscroll/angular';
     IonicModule,
     CalendarPageRoutingModule,
     NgCalendarModule,
-    MbscModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

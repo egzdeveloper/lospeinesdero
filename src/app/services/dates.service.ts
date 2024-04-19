@@ -5,7 +5,6 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
-import { MbscCalendarEvent } from '@mobiscroll/angular';
 import { DateEvent } from 'src/app/models/date-event';
 
 @Injectable({

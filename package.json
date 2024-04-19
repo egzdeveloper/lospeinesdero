@@ -28,8 +28,6 @@
     "@capacitor/keyboard": "5.0.8",
     "@capacitor/status-bar": "5.0.7",
     "@ionic/angular": "^7.0.0",
-    "@mobiscroll/angular": "npm:@mobiscroll/angular-ivy-trial@^5.29.1",
-    "crypto-js": "^4.2.0",
     "firebase": "^10.10.0",
     "ionic7-calendar": "^2.4.0",
     "ionicons": "^7.0.0",
