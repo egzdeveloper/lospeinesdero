@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { MbscCalendarEvent, Notifications } from '@mobiscroll/angular';
 import { DatesService } from 'src/app/services/dates.service';
 
 import * as moment from 'moment';
 import { DateEvent } from 'src/app/models/date-event';
-import { isNumber } from '@mobiscroll/angular/dist/js/core/util/misc';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-add',
@@ -32,8 +31,8 @@ export class AddPage implements OnInit {
   constructor(
     private datesService: DatesService,
     private router: Router,
-    private notify: Notifications,
     private route: ActivatedRoute,
+    private toastService: ToastService,
     private alertController: AlertController
   ) {}
 
@@ -84,17 +83,23 @@ export class AddPage implements OnInit {
       } else {
         this.datesService.addDate(this.date);
       }
-      this.notify.toast({
-        message: 'Cita guardada correctamente',
-        color: 'success',
-      });
+      this.toastService.presentToast(
+        'La cita se ha guardado correctamente',
+        'top',
+        'success',
+        1500,
+        'save'
+      );
       this.form.reset();
       this.router.navigateByUrl('/calendar');
     } catch (e) {
-      this.notify.toast({
-        message: 'Se ha producido un error',
-        color: 'danger',
-      });
+      this.toastService.presentToast(
+        'Se ha producido un error',
+        'top',
+        'danger',
+        1500,
+        'close'
+      );
     }
   }
 
@@ -105,20 +110,20 @@ export class AddPage implements OnInit {
       buttons: [
         {
           text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            console.log('Alert canceled');
-          },
+          role: 'cancel'
         },
         {
           text: 'OK',
           role: 'confirm',
           handler: () => {
             this.datesService.deleteDate(this.id!.toString());
-            this.notify.toast({
-              message: 'Cita eliminada correctamente',
-              color: 'warning',
-            });
+            this.toastService.presentToast(
+              'La cita se ha eliminado correctamente',
+              'top',
+              'warning',
+              1500,
+              'trash'
+            )
             this.router.navigateByUrl('/calendar');
             this.form.reset();
           },

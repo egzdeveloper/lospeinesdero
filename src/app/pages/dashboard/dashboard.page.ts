@@ -5,7 +5,6 @@ import { DateEvent } from 'src/app/models/date-event';
 import { Router } from '@angular/router';
 
 import * as moment from 'moment';
-import { AuthService } from 'src/app/services/auth.service';
 moment.locale('es');
 
 @Component({
@@ -24,7 +23,6 @@ export class DashboardPage implements OnInit {
 
   constructor(private datesServices: DatesService, private router: Router) {
     this.today = moment().format('YYYY/MM/DD')
-    console.log(this.today);
     this.tomorrow = moment().add(1, 'days').format('YYYY/MM/DD');
     this.todayTitle = moment().format('ddd D [de] MMMM');
     this.tomorrowTitle = moment().add(1, 'days').format('ddd D [de] MMMM');

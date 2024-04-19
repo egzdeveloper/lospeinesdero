@@ -12,6 +12,8 @@ import { DateEvent } from 'src/app/models/date-event';
   providedIn: 'root',
 })
 export class DatesService {
+  mainCollection: AngularFirestoreCollection<any>;
+  datesDoc: AngularFirestoreDocument<any>;
   datesCollection: AngularFirestoreCollection<DateEvent>;
   dates: Observable<DateEvent[]>;
 
@@ -78,7 +80,7 @@ export class DatesService {
   }
 
   getDateByDay(day: string) {
-    const dataCollection: AngularFirestoreCollection<Date> = this.db
+    const dataCollection: AngularFirestoreCollection<DateEvent> = this.db
       .collection('lospeinesdero')
       .doc(this.role)
       .collection('citas', (ref) =>
