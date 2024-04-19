@@ -5,3 +5,24 @@ ion-menu-button {
 .hour {
   text-align: end;
 }
+
+ion-item-sliding {
+  margin-bottom: 10px;
+
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
+
+ion-item {
+  --border-radius: 10px;
+  --border-style: none;
+
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+
+  p {
+    color: white;
+  }
+}

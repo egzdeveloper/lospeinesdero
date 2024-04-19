@@ -48,7 +48,7 @@ export class AddPage implements OnInit {
           name: res!.name,
           service: res!.title,
           price: res!.price,
-          start: res!.endTime.toString(),
+          start: res!.startTime.toString(),
           end: res!.endTime.toString(),
           observations: res!.observations!,
           color: res!.color!,
