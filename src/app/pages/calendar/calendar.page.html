@@ -4,9 +4,6 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Calendario</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="setToday()" fill="solid" color="tertiary" style="margin-right: 10px;">Hoy</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -20,15 +17,18 @@
     </ion-segment-button>
   </ion-segment> -->
 
-  <ion-row>
-    <ion-col size="12">
-      <h2 class="ion-text-center">{{ viewTitle | titlecase }}</h2>
-    </ion-col>
-  </ion-row>
+  <div class="header">
+    <ion-title>{{ viewTitle | titlecase }}</ion-title>
+    <div>
+      <ion-button fill="clear" (click)="slidePrev()"><ion-icon name="caret-back" color="tertiary"></ion-icon></ion-button>
+      <ion-button (click)="setToday()" fill="clear" style="color: whitesmoke;">Hoy</ion-button>
+      <ion-button fill="clear" (click)="slideNext()"><ion-icon name="caret-forward" color="tertiary"></ion-icon></ion-button>
+    </div>
+  </div>
 
   <calendar [calendarMode]="calendar.mode" (onTitleChanged)="viewTitle = $event" [eventSource]="myEvents"
     [startingDayMonth]="1" [startHour]="6" [endHour]="22" (onEventSelected)="onEventSelected($event)"
-    [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate" [monthviewEventDetailTemplate]="monthviewEventDetailTemplate">
+    [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate" [monthviewEventDetailTemplate]="monthviewEventDetailTemplate" [lockSwipes]="calendar.lockSwipes">
   </calendar>
 
   <div class="add-button">

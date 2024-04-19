@@ -18,6 +18,7 @@ export class CalendarPage implements OnInit {
   calendar = {
     mode: 'month' as CalendarMode,
     currentDate: new Date(),
+    lockSwipes: true
   };
   viewTitle: string;
 
