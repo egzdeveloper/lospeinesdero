@@ -28,7 +28,7 @@ export class DatesService {
   }
 
   getDatewithID(id: string) {
-    return this.db.collection<any>('citas').doc(id).valueChanges();
+    return this.db.collection<DateEvent>('citas').doc(id).valueChanges();
   }
 
   addDate(date: DateEvent) {
@@ -44,7 +44,7 @@ export class DatesService {
   }
 
   getDateByDay(day: string) {
-    const dataCollection: AngularFirestoreCollection<DateEvent> = this.db.collection('citas', ref => ref.where('day', '==', day).orderBy('start'));
+    const dataCollection: AngularFirestoreCollection<DateEvent> = this.db.collection('citas', ref => ref.where('day', '==', day).orderBy('startTime'));
     return dataCollection.valueChanges();
   }
 }

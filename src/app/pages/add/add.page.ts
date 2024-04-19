@@ -19,7 +19,7 @@ export class AddPage implements OnInit {
   form = new FormGroup({
     name: new FormControl('', Validators.required),
     service: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
+    price: new FormControl(0, Validators.required),
     start: new FormControl('', Validators.required),
     end: new FormControl('', Validators.required),
     observations: new FormControl(''),
@@ -46,13 +46,13 @@ export class AddPage implements OnInit {
       this.title = 'Gestionar';
       await this.datesService.getDatewithID(this.id).subscribe((res) => {
         this.form.setValue({
-          name: res.name,
-          service: res.title,
-          price: res.price,
-          start: res.start,
-          end: res.end,
-          observations: res.observations,
-          color: res.color,
+          name: res!.name,
+          service: res!.title,
+          price: res!.price,
+          start: res!.endTime.toString(),
+          end: res!.endTime.toString(),
+          observations: res!.observations!,
+          color: res!.color!,
         });
       });
     }
@@ -63,9 +63,6 @@ export class AddPage implements OnInit {
     if (this.id) id = this.id;
     else id = new Date().toISOString();
 
-    var startTime = new Date();
-    var endTime = new Date();
-
     this.date = {
       name: this.form.value.name!,
       id: id,
@@ -73,9 +70,9 @@ export class AddPage implements OnInit {
         'YYYY/MM/DD'
       ),
       title: this.form.value.service!,
-      startTime: startTime,
+      startTime: this.form.value.start!,
       allDay: false,
-      endTime: endTime,
+      endTime: this.form.value.end!,
       price: Number(this.form.value.price!),
       observations: this.form.value.observations!,
       color: this.form.value.color!,

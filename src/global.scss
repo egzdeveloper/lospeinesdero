@@ -27,33 +27,24 @@
 
 @import 'swiper/css';
 
-@import "@mobiscroll/angular/dist/css/mobiscroll.scss";
-
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-
-mbsc-calendar-day {
-  div {
-    display: none;
-  }
-
-  .mbsc-calendar-cell-inner {
-    display: block;
-    padding-bottom: 15px;
-
-    .mbsc-calendar-cell-text {
-      display: inline-block;
-    }
-
-    div {
-      display: inline-block;
-
-      .mbsc-calendar-marks {
-        margin-top: 15px;
-      }
-    }
-  }
-}
 
 * {
   font-family: "Quicksand", sans-serif;
+}
+
+.monthview-primary-with-event {
+  background-color: var(--ion-color-light-tint) !important;
+}
+
+.monthview-current {
+  background-color: var(--ion-color-danger-shade) !important;
+}
+
+.monthview-selected {
+  background-color: var(--ion-color-tertiary) !important;
+}
+
+.monthview-container {
+  height: calc(100vh - 175px) !important;
 }

@@ -5,16 +5,16 @@
     </ion-buttons>
     <ion-title>Calendario</ion-title>
     <ion-buttons slot="end">
-      <ion-title (click)="setToday()">Hoy</ion-title>
+      <ion-button (click)="setToday()" fill="solid" color="tertiary" style="margin-right: 10px; --border-radius: 10px">Hoy</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-segment [(ngModel)]="calendar.mode" (ionChange)="segmentChanged($event)" color="tertiary">
-    <ion-segment-button value="week">
+    <!-- <ion-segment-button value="week">
       <ion-label>Semana</ion-label>
-    </ion-segment-button>
+    </ion-segment-button> -->
     <ion-segment-button value="month">
       <ion-label>Mes</ion-label>
     </ion-segment-button>
@@ -37,7 +37,9 @@
     </ion-col> -->
   </ion-row>
 
-  <calendar [calendarMode]="calendar.mode" (onTitleChanged)="viewTitle = $event" [eventSource]="myEvents" [startHour]="6" [endHour]="22" (onEventSelected)="onEventSelected($event)">
+  <calendar [calendarMode]="calendar.mode" (onTitleChanged)="viewTitle = $event" [eventSource]="myEvents"
+    [startingDayMonth]="1" [startHour]="6" [endHour]="22" (onEventSelected)="onEventSelected($event)"
+    [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate" [monthviewEventDetailTemplate]="monthviewEventDetailTemplate">
   </calendar>
 
   <div class="add-button">
@@ -45,4 +47,27 @@
       <ion-icon name="add"></ion-icon>
     </ion-button>
   </div>
+
+  <ng-template #monthviewDisplayEventTemplate let-view="view" let-row="row" let-col="col">
+    {{ view.dates[row*7+col].label }}
+    <div class="indicator-container">
+      <div class="event-indicator" *ngFor="let e of view.dates[row*7+col].events"></div>
+    </div>
+  </ng-template>
+
+  <ng-template #monthviewEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+    <ion-list>
+      @for (date of selectedDate.events; track date.id) {
+        <ion-item [style.--background]="date.color">
+          <ion-label mode="ios">
+            <h2>{{ date.title | titlecase }} - {{ formatDate(date.startTime) }}</h2>
+            <p>{{ date.name | titlecase }}</p>
+          </ion-label>
+          <ion-button slot="end" fill="clear" (click)="editDate(date.id)"><ion-icon name="create" slot="icon-only" size="large" style="color: whitesmoke;"></ion-icon></ion-button>
+        </ion-item>
+      } @empty {
+      <div class="empty">No hay citas</div>
+      }
+    </ion-list>
+  </ng-template>
 </ion-content>

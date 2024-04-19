@@ -4,8 +4,8 @@ export interface DateEvent {
   name: string;
   title: string;
   day: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: Date | string;
+  endTime: Date | string;
   price: number;
   observations?: string;
   color?: string;

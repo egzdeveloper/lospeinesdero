@@ -23,6 +23,7 @@ export class DashboardPage implements OnInit {
 
   constructor(private datesServices: DatesService, private router: Router) {
     this.today = moment().format('YYYY/MM/DD')
+    console.log(this.today);
     this.tomorrow = moment().add(1, 'days').format('YYYY/MM/DD');
     this.todayTitle = moment().format('ddd D [de] MMMM');
     this.tomorrowTitle = moment().add(1, 'days').format('ddd D [de] MMMM');
@@ -31,7 +32,6 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
     this.datesServices.getDateByDay(this.today).subscribe(res => {
       this.todayDates = res;
-      console.log(res);
     });
     this.datesServices.getDateByDay(this.tomorrow).subscribe(res => {
       this.tomorrowDates = res;
