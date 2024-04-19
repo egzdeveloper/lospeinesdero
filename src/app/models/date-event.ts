@@ -1,10 +1,11 @@
-export interface Date {
+export interface DateEvent {
   id: string;
+  allDay?: boolean;
   name: string;
   title: string;
   day: string;
-  start: string;
-  end: string;
+  startTime: Date | string;
+  endTime: Date | string;
   price: number;
   observations?: string;
   color?: string;

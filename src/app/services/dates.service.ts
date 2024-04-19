@@ -5,17 +5,15 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
-import { Date } from '../models/date';
 import { MbscCalendarEvent } from '@mobiscroll/angular';
+import { DateEvent } from 'src/app/models/date-event';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatesService {
-  mainCollection: AngularFirestoreCollection<any>;
-  datesDoc: AngularFirestoreDocument<any>;
-  datesCollection: AngularFirestoreCollection<MbscCalendarEvent>;
-  dates: Observable<MbscCalendarEvent[]>;
+  datesCollection: AngularFirestoreCollection<DateEvent>;
+  dates: Observable<DateEvent[]>;
 
   role: string;
 
@@ -31,13 +29,11 @@ export class DatesService {
     this.datesDoc = this.mainCollection.doc('demo');
     this.datesCollection = this.datesDoc.collection('citas');
     this.dates = this.datesCollection.snapshotChanges().pipe(
-      map((actions) =>
-        actions.map((a) => {
-          const data = a.payload.doc.data() as MbscCalendarEvent;
-          data.id = a.payload.doc.id;
-          return data;
-        })
-      )
+      map( actions => actions.map( a => {
+        const data = a.payload.doc.data() as DateEvent;
+        data.id = a.payload.doc.id;
+        return data;
+      }))
     );
   }
 
@@ -47,14 +43,14 @@ export class DatesService {
 
   getDatewithID(id: string) {
     return this.db
-      .collection<any>('lospeinesdero')
+      .collection<DateEvent>('lospeinesdero')
       .doc(this.role)
       .collection('citas')
       .doc(id)
       .valueChanges();
   }
 
-  addDate(date: MbscCalendarEvent) {
+  addDate(date: DateEvent) {
     this.db
       .collection('lospeinesdero')
       .doc(this.role)
@@ -63,7 +59,7 @@ export class DatesService {
       .set(date);
   }
 
-  editDate(date: MbscCalendarEvent) {
+  editDate(date: DateEvent) {
     this.db
       .collection('lospeinesdero')
       .doc(this.role)
@@ -86,7 +82,7 @@ export class DatesService {
       .collection('lospeinesdero')
       .doc(this.role)
       .collection('citas', (ref) =>
-        ref.where('day', '==', day).orderBy('start')
+        ref.where('day', '==', day).orderBy('startTime')
       );
     return dataCollection.valueChanges();
   }

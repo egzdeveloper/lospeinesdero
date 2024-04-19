@@ -1,81 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-
-import {
-  MbscCalendarEvent,
-  MbscEventcalendarOptions,
-  Notifications,
-  setOptions,
-  localeEs,
-} from '@mobiscroll/angular';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatesService } from '../../services/dates.service';
 import { Router } from '@angular/router';
 
-setOptions({
-  locale: localeEs,
-  theme: 'material',
-  themeVariant: 'auto',
-});
+import { CalendarComponent, CalendarMode } from 'ionic7-calendar';
+import { DateEvent } from 'src/app/models/date-event';
+import { IEvent } from 'ionic7-calendar/calendar.interface';
+
+import * as moment from 'moment';
+moment.locale('es');
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.page.html',
   styleUrls: ['./calendar.page.scss'],
-  providers: [Notifications],
 })
 export class CalendarPage implements OnInit {
-  type: 'month' | 'week' = 'week';
+  calendar = {
+    mode: 'month' as CalendarMode,
+    currentDate: new Date(),
+  };
+  viewTitle: string;
+
+  @ViewChild(CalendarComponent) myCal!: CalendarComponent;
 
   constructor(
-    private notify: Notifications,
     private datesService: DatesService,
     private router: Router
   ) {}
 
-  myEvents: MbscCalendarEvent[] = [];
-
-  eventSettings: MbscEventcalendarOptions = {
-    height: '89vh',
-    view: {
-      calendar: { type: 'week' },
-      agenda: { type: 'day' },
-    },
-    onEventClick: (args) => {
-      this.notify.toast({
-        message: args.event.title + ' a ' + args.event.name,
-      });
-    },
-    onEventRightClick: (args) => {
-      this.router.navigateByUrl('/add/' + args.event.id)
-    }
-  };
+  myEvents: any[] = [];
 
   ngOnInit(): void {
     this.datesService.getDates().subscribe((res) => {
+      res.forEach(date => {
+        date.startTime = new Date(date.startTime);
+        date.endTime = new Date(date.endTime);
+      });
+
       this.myEvents = res;
     });
   }
 
-  segmentChanged(ev: CustomEvent) {
+  onEventSelected(ev: IEvent) {
+    console.log(ev.title);
+  }
 
-    if (ev.detail.value === 'month') {
-      this.eventSettings = {
-        view: {
-          calendar: { type: 'month' },
-          agenda: { type: 'day' },
-        }
-      }
-    } else if (ev.detail.value === 'week') {
-      this.eventSettings = {
-        view: {
-          calendar: { type: 'week' },
-          agenda: { type: 'day' },
-        }
-      }
-    }
+  segmentChanged(ev: CustomEvent) {
+    this.calendar.mode = ev.detail.value;
   }
 
   addDate() {
     this.router.navigateByUrl('add');
+  }
+
+  setToday() {
+    this.myCal.currentDate = new Date();
+    this.myCal.update();
+  }
+
+  slidePrev() {
+    this.myCal.slidePrev();
+  }
+
+  slideNext() {
+    this.myCal.slideNext();
+  }
+
+  formatDate(date: string): string {
+    return moment(date).format('HH:mm')
+  }
+
+  editDate(id: string) {
+    console.log(id)
+    this.router.navigateByUrl('/add/' + id);
   }
 }
