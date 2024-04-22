@@ -38,7 +38,7 @@ export class CustomersPage implements OnInit {
       }
     });
     modal.present();
-    slidingItem.close();
+    if (slidingItem) slidingItem.close();
   }
 
   async deleteCustomer(id: string) {

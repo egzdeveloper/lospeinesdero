@@ -22,6 +22,7 @@ export class CustomerModalComponent implements OnInit {
   });
   title: string;
   id: string;
+  exists: boolean;
 
   constructor(
     private modalCtrl: ModalController,
@@ -37,6 +38,7 @@ export class CustomerModalComponent implements OnInit {
       this.customer = this.navParams.get('customer');
       this.title = 'Editar'
       this.id = this.customer.id;
+      this.exists = true;
       this.form.setValue({
         name: this.customer.name!,
         phone: this.customer.phone!,
@@ -46,6 +48,7 @@ export class CustomerModalComponent implements OnInit {
     } else {
       this.title = 'Añadir'
       this.id =  uuid.v4();
+      this.exists = false;
     }
   }
 
@@ -60,7 +63,7 @@ export class CustomerModalComponent implements OnInit {
 
     try {
 
-      if (this.customer) {
+      if (this.exists) {
         this.customerSvc.editCustomer(this.customer);
       } else {
         this.customerSvc.addCustomer(this.customer);
