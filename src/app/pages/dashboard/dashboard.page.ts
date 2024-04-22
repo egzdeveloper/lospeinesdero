@@ -41,8 +41,8 @@ export class DashboardPage implements OnInit {
     return date.substring(date.length - 5, date.length);
   }
 
-  editDate(id: string) {
-    console.log(id)
+  editDate(id: string, slidingItem?: any) {
+    slidingItem.close(),
     this.router.navigateByUrl('/add/' + id);
   }
 }
