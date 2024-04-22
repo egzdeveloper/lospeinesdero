@@ -19,7 +19,7 @@ export class CustomersService {
     this.loadData();
   }
 
-  loadData() {
+  private loadData() {
     this.mainCollection = this.db.collection('lospeinesdero');
     this.customersDoc = this.mainCollection.doc(this.role);
     this.customersCollection = this.customersDoc.collection('clientes');

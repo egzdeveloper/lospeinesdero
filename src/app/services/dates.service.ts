@@ -21,13 +21,13 @@ export class DatesService {
   constructor(
     private db: AngularFirestore,
   ) {
-    this.loadData();
     this.role = localStorage.getItem('role')!;
+    this.loadData();
   }
 
   loadData() {
     this.mainCollection = this.db.collection('lospeinesdero');
-    this.datesDoc = this.mainCollection.doc('demo');
+    this.datesDoc = this.mainCollection.doc(this.role);
     this.datesCollection = this.datesDoc.collection('citas');
     this.dates = this.datesCollection.snapshotChanges().pipe(
       map( actions => actions.map( a => {
