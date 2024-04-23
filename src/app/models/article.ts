@@ -3,6 +3,7 @@ export interface Article {
   name: string;
   category: Category;
   uds: number;
+  observations?: string;
 }
 
 export interface Category {

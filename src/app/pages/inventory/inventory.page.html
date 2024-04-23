@@ -9,32 +9,47 @@
 
 <ion-content>
   <div class="navbar">
-    <ion-searchbar placeholder="Buscar artículo..."></ion-searchbar>
-    <ion-button expand="block" color="tertiary"><ion-icon slot="icon-only"
+    <ion-searchbar placeholder="Buscar artículo..." (ionInput)="searchInput($event)"></ion-searchbar>
+    <ion-button expand="block" color="tertiary" (click)="openModal()"><ion-icon slot="icon-only"
         name="add-circle"></ion-icon></ion-button>
   </div>
 
   <ion-accordion-group>
-    @for (category of categories; track category.name) {
-      <ion-accordion [value]="category.name">
-        <ion-item slot="header" color="light">
-          <ion-label>{{ category.name }}</ion-label>
-        </ion-item>
-        <div slot="content">
-            <ion-item lines="full" class="article">
-              <ion-label mode="ios">Tinte Morado</ion-label>
-              <ion-badge slot="end" [color]="getBardgeColor(22)">22</ion-badge>
+    @if (articles$ | async; as articles) {
+      @if (searchText === '') {
+        @for (category of categories; track category.name) {
+          <ion-accordion [value]="category.name">
+            <ion-item slot="header" color="light">
+              <ion-label>{{ category.name | titlecase }}</ion-label>
+              @if (getNumberOfArticles(articles, category.name) > 0) {
+                <ion-badge color="tertiary">{{ getNumberOfArticles(articles, category.name) }}</ion-badge>
+              }
             </ion-item>
-            <ion-item lines="full" class="article">
-              <ion-label mode="ios">Tinte Azul</ion-label>
-              <ion-badge slot="end" [color]="getBardgeColor(3)">3</ion-badge>
-            </ion-item>
-            <ion-item lines="full" class="article">
-              <ion-label mode="ios">Tinte Verde</ion-label>
-              <ion-badge slot="end" [color]="getBardgeColor(0)">0</ion-badge>
-            </ion-item>
-        </div>
-      </ion-accordion>
+            <div slot="content">
+              @for (article of articles | categories: category.name; track article.id) {
+                <ion-item lines="full" class="article" (click)="openModal(article)">
+                  <ion-label mode="ios">{{ article.name | titlecase }}</ion-label>
+                  <ion-badge slot="end" [color]="getBadgeColor(article.uds)">{{ article.uds }}</ion-badge>
+                </ion-item>
+              }
+            </div>
+          </ion-accordion>
+        }
+      } @else {
+        @for (article of articles | filter: searchText: 'name'; track article.id) {
+          <ion-item lines="full" class="article" (click)="openModal(article)">
+            <ion-label mode="ios">{{ article.name | titlecase }}</ion-label>
+            <ion-badge slot="end" [color]="getBadgeColor(article.uds)">{{ article.uds }}</ion-badge>
+          </ion-item>
+        } @empty {
+          <p style="text-align: center;">No se han encontrado artículos.</p>
+        }
+      }
     }
   </ion-accordion-group>
 </ion-content>
+
+
+
+
+

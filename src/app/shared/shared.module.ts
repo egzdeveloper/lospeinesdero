@@ -5,12 +5,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomerModalComponent } from './customer-modal/customer-modal.component';
+import { InventoryModalComponent } from './inventory-modal/inventory-modal.component';
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    CustomerModalComponent
+    CustomerModalComponent,
+    InventoryModalComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { CustomerModalComponent } from './customer-modal/customer-modal.componen
   ],
   exports: [
     SidebarComponent,
-    CustomerModalComponent
+    CustomerModalComponent,
+    InventoryModalComponent
   ]
 })
 export class SharedModule { }
