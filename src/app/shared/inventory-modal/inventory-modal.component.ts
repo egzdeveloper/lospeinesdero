@@ -38,10 +38,10 @@ export class InventoryModalComponent  implements OnInit {
   }
 
   ngOnInit() {
-    this.article = this.navParams.get('customer');
+    this.article = this.navParams.get('article');
 
     if (this.article) {
-      this.article = this.navParams.get('customer');
+      this.article = this.navParams.get('article');
       this.title = 'Editar'
       this.id = this.article.id;
       this.exists = true;

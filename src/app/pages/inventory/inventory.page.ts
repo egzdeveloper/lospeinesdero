@@ -16,6 +16,7 @@ export class InventoryPage implements OnInit {
   articles$ = inject(InventoryService).getArticles();
   articlesCount: Article[];
   searchText: string = '';
+  stockCheckbox: boolean = false;
 
   constructor(
     private inventorySvc: InventoryService,
@@ -39,11 +40,11 @@ export class InventoryPage implements OnInit {
     else return 'success';
   }
 
-  async openModal(customer?: Article) {
+  async openModal(article?: Article) {
     const modal = await this.modalCtrl.create({
       component: InventoryModalComponent,
       componentProps: {
-        customer: customer,
+        article: article,
       },
     });
     modal.present();
@@ -55,11 +56,13 @@ export class InventoryPage implements OnInit {
 
   getNumberOfArticles(array: any[], category: string) {
     let count: number = 0;
-
     array.forEach(item => {
       if (item.category === category) count++;
     })
-
     return count;
+  }
+
+  searchNoStockArticles(event: any) {
+    this.stockCheckbox = event.detail.checked;
   }
 }

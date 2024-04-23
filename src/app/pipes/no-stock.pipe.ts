@@ -1,20 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Article } from '../models/article';
 
 @Pipe({
-  name: 'categories'
+  name: 'noStock',
 })
-export class CategoriesPipe implements PipeTransform {
+export class NoStockPipe implements PipeTransform {
 
-  transform(array: Array<any>, category: string): Array<any> {
+  transform(array: Array<any>): Array<any>{
 
     array.sort((a,b) => {
       return a.name.toLocaleLowerCase().localeCompare(b.name.toLocaleLowerCase(), 'es')
     });
 
     return array.filter(item => {
-      return item['category'] == category;
+      return item['uds'] == 0;
     });
-   }
+  }
 
 }

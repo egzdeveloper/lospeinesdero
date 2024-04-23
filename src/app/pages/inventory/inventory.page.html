@@ -10,13 +10,16 @@
 <ion-content>
   <div class="navbar">
     <ion-searchbar placeholder="Buscar artículo..." (ionInput)="searchInput($event)"></ion-searchbar>
+    <ion-button color="tertiary">
+      <ion-checkbox labelPlacement="end" (ionChange)="searchNoStockArticles($event)">Sin Stock</ion-checkbox>
+    </ion-button>
     <ion-button expand="block" color="tertiary" (click)="openModal()"><ion-icon slot="icon-only"
         name="add-circle"></ion-icon></ion-button>
   </div>
 
   <ion-accordion-group>
     @if (articles$ | async; as articles) {
-      @if (searchText === '') {
+      @if (searchText === '' && !stockCheckbox) {
         @for (category of categories; track category.name) {
           <ion-accordion [value]="category.name">
             <ion-item slot="header" color="light">
@@ -27,7 +30,7 @@
             </ion-item>
             <div slot="content">
               @for (article of articles | categories: category.name; track article.id) {
-                <ion-item lines="full" class="article" (click)="openModal(article)">
+                <ion-item lines="full" class="article" (click)="openModal(article)" button>
                   <ion-label mode="ios">{{ article.name | titlecase }}</ion-label>
                   <ion-badge slot="end" [color]="getBadgeColor(article.uds)">{{ article.uds }}</ion-badge>
                 </ion-item>
@@ -35,9 +38,18 @@
             </div>
           </ion-accordion>
         }
-      } @else {
+      } @else if (searchText !== '') {
         @for (article of articles | filter: searchText: 'name'; track article.id) {
-          <ion-item lines="full" class="article" (click)="openModal(article)">
+          <ion-item lines="full" class="article" (click)="openModal(article)" button>
+            <ion-label mode="ios">{{ article.name | titlecase }}</ion-label>
+            <ion-badge slot="end" [color]="getBadgeColor(article.uds)">{{ article.uds }}</ion-badge>
+          </ion-item>
+        } @empty {
+          <p style="text-align: center;">No se han encontrado artículos.</p>
+        }
+      } @else if (stockCheckbox) {
+        @for (article of articles | noStock; track article.id) {
+          <ion-item lines="full" class="article" (click)="openModal(article)" button>
             <ion-label mode="ios">{{ article.name | titlecase }}</ion-label>
             <ion-badge slot="end" [color]="getBadgeColor(article.uds)">{{ article.uds }}</ion-badge>
           </ion-item>

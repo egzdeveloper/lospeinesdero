@@ -31,11 +31,11 @@
     [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate" [monthviewEventDetailTemplate]="monthviewEventDetailTemplate" [lockSwipes]="calendar.lockSwipes">
   </calendar>
 
-  <div class="add-button">
-    <ion-button color="tertiary" slot="icon-only" (click)="addDate()">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="addDate()">
+    <ion-fab-button color="tertiary">
       <ion-icon name="add"></ion-icon>
-    </ion-button>
-  </div>
+    </ion-fab-button>
+  </ion-fab>
 
   <ng-template #monthviewDisplayEventTemplate let-view="view" let-row="row" let-col="col">
     {{ view.dates[row*7+col].label }}
