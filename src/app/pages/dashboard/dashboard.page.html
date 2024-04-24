@@ -63,4 +63,24 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  <ion-card class="inventory">
+    <ion-card-header>
+      <ion-card-title>Inventario</ion-card-title>
+      <ion-card-subtitle>Artículos sin stock</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        @for (article of articles; track article.id) {
+          <ion-item lines="full" button color="light" (click)="openModal(article)">
+            <ion-label mode="ios" style="font-weight: bold;">{{ article.name | titlecase }}</ion-label>
+            <ion-badge color="danger" slot="end">{{ article.uds }}</ion-badge>
+          </ion-item>
+        } @empty {
+        Actualmente no tienes artículos sin stock.
+        }
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

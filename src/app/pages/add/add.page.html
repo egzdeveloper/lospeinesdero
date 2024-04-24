@@ -14,31 +14,31 @@
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ion-list>
       <ion-item>
-        <ion-input label="Cliente*" [clearInput]="true" type="text" labelPlacement="stacked"
+        <ion-input label="Cliente*" [clearInput]="true" type="text" labelPlacement="stacked" fill="solid"
           formControlName="name"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Servicio*" [clearInput]="true" type="text" labelPlacement="stacked"
+        <ion-input label="Servicio*" [clearInput]="true" type="text" labelPlacement="stacked" fill="solid"
           formControlName="service"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Precio*" [clearInput]="true" type="number" labelPlacement="stacked"
+        <ion-input label="Precio*" [clearInput]="true" type="number" labelPlacement="stacked" fill="solid"
           formControlName="price"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Hora de comienzo*" [clearInput]="true" type="datetime-local" labelPlacement="stacked"
+        <ion-input label="Hora de comienzo*" [clearInput]="true" type="datetime-local" labelPlacement="stacked" fill="solid"
           formControlName="start"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input label="Hora de finalización*" [clearInput]="true" type="datetime-local" labelPlacement="stacked"
+        <ion-input label="Hora de finalización*" [clearInput]="true" type="datetime-local" labelPlacement="stacked" fill="solid"
           formControlName="end"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-textarea label="Observaciones" type="text" [autoGrow]="true" labelPlacement="stacked"
+        <ion-textarea label="Observaciones" type="text" [autoGrow]="true" labelPlacement="stacked" fill="solid"
           formControlName="observations"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-input label="Color*" [clearInput]="true" type="color" formControlName="color"></ion-input>
+        <ion-input label="Color*" [clearInput]="true" type="color" formControlName="color" fill="solid"></ion-input>
       </ion-item>
     </ion-list>
 

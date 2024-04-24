@@ -26,3 +26,14 @@ ion-item {
     color: white;
   }
 }
+
+.inventory {
+  ion-item {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}

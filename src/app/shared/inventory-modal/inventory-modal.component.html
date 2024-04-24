@@ -1,0 +1,36 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-title>{{ title }} Artículo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="tertiary" (click)="modalDismiss()"><ion-icon name="close"
+          slot="icon-only"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-input label="Nombre*" [clearInput]="true" type="text" labelPlacement="stacked" fill="solid"
+          formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Categoría*" labelPlacement="stacked" fill="solid" interface="popover" justify="space-between"
+          type="text" formControlName="category">
+          @for (category of categories; track category.name) {
+          <ion-select-option [value]="category.name">{{ category.name }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Unidades" [clearInput]="true" type="number" labelPlacement="stacked" fill="solid"
+          formControlName="uds"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea label="Observaciones" labelPlacement="stacked" fill="solid" rows="10"
+          formControlName="observations"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button color="success" type="submit" expand="block" [disabled]="!form.valid">Guardar <ion-icon slot="end"
+        name="save"></ion-icon></ion-button>
+  </form>
+</ion-content>
